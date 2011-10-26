@@ -1,0 +1,9 @@
+
+<% @html.each do |res| %>
+	    <div class="DisArticle">
+        <div class="articleIn tBw"><a target="_blank" href="<%= res.cse_url %>"><%= mark_keyword(res.topic.html_safe , @keyword ).html_safe %></a></div>
+        <div class="articleIn aBw"><%= res.openuser.html_safe %></div>
+        <div class="articleIn cBw"><%= res.amount %></div>
+        <div class="articleIn nBw"><%= res.datetime.strftime("%Y-%m-%d %H:%I:%S") %></div>
+        </div>
+<% end %>

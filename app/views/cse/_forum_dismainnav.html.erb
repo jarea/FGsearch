@@ -1,0 +1,9 @@
+        <div class="dismainnav">
+	          <h5>	
+	          		<div class="navBtn<%= dismainnav_on(0) %>"><a href="<%= dismainnav_url(0) %>">所有話題(<%= @fsks.total if @fsks%>)</a></div>
+	           		<div class="navBtn<%= dismainnav_on(1) %>"><a href="<%= dismainnav_url(1) %>">Beauty(<%= @fsks.beauty_total if @fsks%>)</a></div>
+	            	<div class="navBtn<%= dismainnav_on(2) %>"><a href="<%= dismainnav_url(2) %>">Fashion(<%= @fsks.fashion_total if @fsks%>)</a></div>
+	            	<div class="navBtn<%= dismainnav_on(3) %>"><a href="<%= dismainnav_url(3) %>">Freetalk(<%= @fsks.freetalk_total if @fsks%>)</a></div> 
+	          		<div class="navBtn<%= dismainnav_on(6) %>"><a href="<%= dismainnav_url(6) %>">Fit(<%= @fsks.fit_total if @fsks%>)</a></div>
+	          </h5>
+        </div>

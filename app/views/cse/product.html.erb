@@ -1,0 +1,38 @@
+<script type="text/javascript">
+function FunMemberProAdd(ProNum,Name){  
+	window.open("http://www.fashionguide.com.tw/Beauty/08/FunMemberPro.asp?ProNum="+ProNum+"&Name="+Name,"MemberPro","width=400,height=300,scrollbars=1,resizeable=1"); 
+}
+</script>
+
+<form method="GET" name="search" actino="cse/product" > 
+		Keyword:<input type="text" name="q" id="keyword" value="<%= @keyword %>" autocomplete = "off" />
+		<input type="submit" />
+</form>
+<div id="all">
+  <div class="main a">
+    <h4>『<strong><%= @keyword %></strong>』搜尋結果 </h4>
+    <div class="discuss a">
+      <h5> 相關搜尋:<%= @related_eywords.to_s.html_safe %></h5>
+      <div class="disall a">
+        <%= render  'menu'   %>
+        <div id="dismain">
+          <h4> 『<strong><%= @keyword %></strong>』在討論區搜尋結果(共<%= @total %>筆)</h4>
+          <div class="dismainnav">
+            <%= render 'sort_menu' %>
+          </div>
+         <div id="show">
+         	<%= render 'product'%>
+         </div>
+          <div id="apear">
+            <p>
+				<div id="paginate">
+		        		<%= paginate @html, :remote => true , :window => 0 if !@html.empty?  %>
+		        </div>
+			</p>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

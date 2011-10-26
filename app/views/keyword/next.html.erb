@@ -1,0 +1,23 @@
+
+
+<div id='keywords'>
+	<%= render  'keyword' %>
+</div>
+
+
+
+<div id="paginator">
+<%= paginate @keywords, :remote => true ,:window => 0		 %>
+</div>
+<br />
+<span onclick="getWindowOffset()">getWindowOffset</span> : <span id="getWindowOffset"></span>
+<br />
+<span onclick="getWindowSize()">getWindowSize</span> : 
+<br />
+<span onclick="getObjOffset(next)">getObjOffset</span>
+<br />
+<span onclick="getObjSize(next)">getObjSize</span>
+<br />
+
+<span onclick="jQuery('#next').click()">next Click</span>
+<br />

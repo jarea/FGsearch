@@ -1,0 +1,57 @@
+<form method="GET" name="search" actino="cse/forum" >
+		Keyword:<input type="text" name="q" id="keyword" value="<%= @keyword %>" autocomplete = "off" />
+		<input type="submit" />
+</form>
+
+
+<div id="all">
+  <div class="main a">
+    <h4>『<strong><%= @keyword %></strong>』搜尋結果    </h4>
+    <div class="discuss a">
+    <h5> 相關搜尋:<%= @related_eywords.to_s.html_safe %></h5>
+    <div class="disall a">
+    	<%= render  'menu' %>
+      <div id="dismain">
+        <h4> 『<strong><%= @keyword %></strong>』在討論區搜尋結果(共<%=  @fsks.total if @fsks %>筆)</h4>
+       <div id='forum_dismainnav'>
+        <%= render 'forum_dismainnav'%>
+		</div>
+        <% if @html && !@html.empty? %>
+	        <div id="districtions">
+	          <div class="title distriction">|話題</div>
+	            <div class="line">|</div>
+	          <div class="author distriction">作者</div>
+	            <div class="line">|</div>
+	          <div class="answer distriction">回應數</div>
+	            <div class="line">|</div>
+	          <div class="time distriction">最新回應</div>
+	          <div class="line">|</div>
+	        
+	        </div>
+	        <div id='show'>
+		        	<%= render  'forum' %>
+		    </div>
+		<%else%>
+		    <div class="DisArticle">
+		        <div class="articleIn tBw">這個區塊沒有搜尋結果</div>
+		        <div class="articleIn aBw"></div>
+		        <div class="articleIn cBw"></div>
+		        <div class="articleIn nBw"></div>
+	        </div>
+		<%end%>
+	        
+      <div id="apear">
+        	<p>
+	        	<div id="paginate">
+		        		<%= paginate @html, :remote => true , :window => 0 if @html  %>
+		        </div>
+	    	</p>
+      </div>
+    </div>
+    
+    </div>
+    
+  </div>
+</div>
+
+</div>

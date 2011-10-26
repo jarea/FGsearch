@@ -1,0 +1,20 @@
+octopus:
+  environments:
+    - development
+    - production
+  development:
+    test:
+      host: 127.0.0.1
+      adapter: mysql
+      username: root
+      password: "0000"
+      database: test
+      encoding: utf8
+  production:
+    test:
+      host: 127.0.0.1
+      adapter: mysql
+      username: root
+      password: "0000"
+      database: test
+      encoding: utf8

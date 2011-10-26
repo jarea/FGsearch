@@ -1,0 +1,2 @@
+$('#keywords').append('<%= escape_javascript render 'keyword' %>');
+$('#paginator').html('<%= escape_javascript(paginate(@keywords, :remote => true , :window => 0 )).to_s %>');

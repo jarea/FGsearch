@@ -1,0 +1,12 @@
+<div class="form1">
+	<p>
+	<label> 排序:</label>
+	<input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_0" onclick="window.location = '?q=<%= @keyword %>&sort=1'" <%= sort_menu_on(1) ? sort_menu_on(1): "checked"  %>  />
+	相關性
+	<input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_1" onclick="window.location = '?q=<%= @keyword %>&sort=2'" <%= sort_menu_on(2) %>/>
+	時間排序
+	<input type="radio" name="RadioGroup1" value="radio" id="RadioGroup1_2" onclick="window.location = '?q=<%= @keyword %>&sort=3'" <%= sort_menu_on(3) %>/>
+	熱門排序
+	</p>
+</div>
+

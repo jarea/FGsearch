@@ -1,0 +1,29 @@
+<% @html.each do |res|%>
+      <div class="article">
+            <div class="articleimg">
+              	<img src="<%= res.img_url %>" alt="" />
+            </div>
+            <div class="word">
+              <div class="wl">
+                <div class="word1">
+                	<div class="word2"> <!-- [<%= res.date %>]  --></div>
+                	<a target="_blank" href="<%= res.cse_url %>">
+                		<%= mark_keyword(res.topic.html_safe , @keyword ).html_safe %>
+                		</a></div>
+              </div>
+              <div class="wr">
+                <div class="word3">
+<!--                   <div class="classifyMedia">[站內分類]</div> -->
+                  <div class="block">點閱數:<%= res.click_amount%></div>
+                  <div class="block">回應:<%= res.amount %></div>
+                </div>
+              </div>
+              <div class="word4">
+              		[<%= res.date %>] 
+              		<%= res.topic_content.html_safe %>
+              </div>
+              <div class="word5"></div>
+            </div>
+          </div>
+<% end %>
+

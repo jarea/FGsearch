@@ -1,0 +1,23 @@
+
+<span onclick="jQuery()">討論區</span>
+<span>部落格</span>
+<div id="cse-search-form" style="width: 50%;"></div>
+
+<script src="http://www.google.com/jsapi" type="text/javascript"></script>
+<script type="text/javascript"> 
+  google.load('search', '1', {language : 'zh-TW', style : google.loader.themes.BUBBLEGUM});
+  google.setOnLoadCallback(function() {
+    var customSearchControl = new google.search.CustomSearchControl('008214668176899870401:qwwvtl8vcqg');
+    customSearchControl.setResultSetSize(google.search.Search.FILTERED_CSE_RESULTSET);
+    var options = new google.search.DrawOptions();
+    options.setSearchFormRoot('cse-search-form');
+    options.setAutoComplete(true);    
+    customSearchControl.draw('cse', options);
+  }, true);
+
+</script>
+
+
+<hr />
+
+<div id="cse" style="width:100%;"></div> 

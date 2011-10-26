@@ -1,0 +1,32 @@
+<% @html.each_with_index do |res , index|%>
+      <div class="article">
+            <div class="articleimg">
+              <img width="75" height="88" src="<%= res.img_url %>"  />
+            </div>
+            <div class="word">
+              <div class="wl">
+                <div class="word1">
+<!--                 	<div class="word2"> [<%= res.datetime.to_date %>] </div> -->
+                	<a href="<%= res.cse_url %>" target="_blank">
+                		<%= mark_keyword(res.topic.html_safe , @keyword ).html_safe %>
+                	</a>
+                </div>
+              </div>
+              <div class="wr">
+                <div class="word3">
+                  <div class="classifyMessage">[<%= res.cat_name.html_safe %>]</div>
+                  <div class="block">點閱數:<%= res.pvcount %></div>
+                  <div class="block">點閱數:<%= res.pvcount %></div>
+                  <div class="block">作者:<%= res.author%></div>
+                </div>
+              </div>
+              <div class="word4"><%= res.cse_description.html_safe%></div>
+              <div class="word5"></div>
+            </div>
+          </div>
+<% end %>  
+
+
+
+
+

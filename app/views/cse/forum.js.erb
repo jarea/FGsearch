@@ -1,0 +1,3 @@
+$('#show').append('<%= escape_javascript render 'forum' %>');
+$('#paginate').html('<%= escape_javascript(paginate(@html, :remote => true , :window => 0 )).to_s %>');
+$('#forum_dismainnav').html('<%= escape_javascript render 'forum_dismainnav' %>');

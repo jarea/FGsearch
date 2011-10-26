@@ -1,0 +1,51 @@
+ <% @html.each do |res|  %>
+          <div class="PArticle">
+            <div class="lPA">
+              <div class="PArticleimg">
+                <img src="<%= res[:img_url] %>"  />
+              </div>
+              <div class="productTitle"><a target="_blank" href="<%= res.cse_url %>"><%= mark_keyword(res.topic.html_safe , @keyword ).html_safe %></a></div>
+              <div class="Pword">
+                <div class="word2">
+<!--                 	評鑑商品：<% res[:brandName]%> <% res[:proName] %><br /> -->
+              		參考價格：<%= res.price.html_safe %>元 容量：<%= res.volume.html_safe %> <br />
+              		(回應文章<%= res.amount %>篇 <%= res.date.strftime('%Y-%m-%d %H:%I:%S') %>)
+				</div>
+                <div class="word3"><%= res.cse_description.html_safe %></div>
+              </div>
+            </div>
+            <div class="rPA">
+              <div class="pVote">
+                <div class="best">
+                  <div class="bestBar"  style='width:<%= res.item_grade_5_sum %>px' ></div>
+                  <div class="bestPa">很好 <%= res.item_grade_5_sum %>%</div>
+                </div>
+                <div class="good">
+                  <div class="goodBar"  style='width:<%= res.item_grade_4_sum %>px' ></div>
+                  <div class="goodPa">好 <%= res.item_grade_4_sum %>%</div>
+                </div>
+                <div class="littleBit">
+                  <div class="littleBitBar"  style='width:<%= res.item_grade_3_sum %>px' ></div>
+                  <div class="littleBitPa">還好 <%= res.item_grade_3_sum %>%</div>
+                </div>
+                <div class="bad">
+                  <div class="badBar"  style='width:<%= res.item_grade_2_sum %>px' ></div>
+                  <div class="badPa">差 <%= res.item_grade_2_sum %>%</div>
+                </div>
+                <div class="worst">
+                  <div class="worstBar"  style='width:<%= res.item_grade_1_sum %>px' ></div>
+                  <div class="worstPa">很差 <%= res.item_grade_1_sum %>%</div>
+                </div>
+              </div>
+            </div>
+            <div class="downa">
+              <div class="link1">
+                <div class="img"><img src="../../images/www/pic1.png" width="15" height="15" /></div>
+                <a href="#"><a href="/cse/forum/?q=<%= res.product_name %>">看更多 <b><%= res.product_name.html_safe %></b> 的討論</a></a></div>
+              <div class="link2">
+                <div class="img"><img src="../../images/www/pic2.png" width="15" height="15" /></div>
+                
+                <a href="javascript:FunMemberProAdd('<%= res.product_num %>','<%= res.product_name %>')">加為我的愛用品</a></div>
+            </div>
+          </div>
+ <% end %>

@@ -1,0 +1,27 @@
+
+FG Search
+<form method="GET" name="search" >
+	<div id="tabs">	
+				 <a href="<%= menu_link(@keyword , 'all') %>" onclick="select_type('all')" >全站</a>|
+				 <a href="<%= menu_link(@keyword , 'forum') %>" onclick="select_type('forum')" >討論區</a>| 
+				 <a href="<%= menu_link(@keyword , 'product') %>" onclick="select_type('product')" >商品評鑑</a>| 
+				 <a href="<%= menu_link(@keyword , 'blog') %>" onclick="select_type('blog')" >部落格</a>|
+				 <a href="<%= menu_link(@keyword , 'video') %>" onclick="select_type('video')" >影音</a>|
+				 <a href="<%= menu_link(@keyword , 'beautynews') %>" onclick="select_type('beautynews')" >美研情報站</a>
+			<div id="tabs-1">
+				Keyword:<input type="text" name="keyword" id="keyword" value="<%= @keyword%>" autocomplete = "off" />
+				<input type="hidden" name="type" id="type" value="<%= @type %>"/>
+				<input type="submit" />
+			</div>
+	</div>
+</form>
+
+Keyword : <%= @keyword %>  , Type :<span id="type_name"> <%= @type %></span>
+
+<hr />
+<% @list.each do |l| %>
+	<%= l %>  <br />
+<% end %>
+
+
+

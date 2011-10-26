@@ -1,0 +1,56 @@
+
+
+<div id="ad_keyword">
+	<ul>
+		<li><a href="#tabs-1">新增單筆關鍵字</a></li>
+		<li><a href="#tabs-2">新增多筆關鍵字</a></li>
+	</ul>
+	<div id="tabs-1">
+		<p>
+			<h2>新增單筆關鍵字</h2>
+			<%= simple_form_for @keyword , :url => 'add_keyword_insert'  do |f| %>
+				<%= f.input :keyword %><br />
+				相關關鍵字
+				<%= text_field_tag 'acssociate_keyword' , nil , :style => 'width:200px;' %><br />
+				多個關鍵字請以 , 隔開。<br />
+				<%= f.submit '新增' %>
+			<% end %>
+		</p>
+	</div>
+	<div id="tabs-2">
+		<p>
+			<h2>新增多筆關鍵字</h2>
+			<%= simple_form_for @keyword , :url => 'add_keyword_insert'  do |f|%>
+				在下面文字方塊填入想新增的關鍵字，每行一筆資料<br />
+				輸入格式  主要關鍵字:相關關鍵字,相關關鍵字<br />
+				EX: 美白:美白面膜,美白方法<br />
+				<%= text_area_tag 'acssociate_keyword_list' , nil , :rows => 20 , :cols => 50 %><br />
+				<%= f.submit '新增' %>
+			<% end %>
+		</p>
+	</div>
+</div>
+
+<p style="color: green"><%= flash[:notice] %></p>
+<p style="color: red"><%= flash[:alert] %></p>
+
+
+<% if @add_list %>
+	<p style="color: red">
+		<table>
+			<tr>
+				<td>關鍵字</td>
+				<td>相關關鍵字</td>
+			</tr>
+			<% @add_list.each do |res| %>
+			<tr>
+					<td><%= res[:keyword] %></td>
+					<td><%= res[:accociate_keyword] %></td>
+			</tr>
+			<% end%>		
+		</table>
+	</p>
+
+<% end %>
+
+

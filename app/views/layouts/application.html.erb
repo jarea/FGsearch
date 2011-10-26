@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Fg</title>
+  <meta content="text/html; charset=UTF-8" http-equiv='Content-Type' />
+
+  <%= javascript_include_tag "jquery-1.6.2.min.js" , "jquery.autocomplete.js" , "jquery-ui-1.8.15.custom.min.js" , "rails.js"  %>
+  <%= stylesheet_link_tag    "jquery.autocomplete.css" , "jquery-ui-1.8.15.custom.css" , "fg-0.2.css" %> 
+  <%= csrf_meta_tags %>
+<script type="text/javascript">
+
+	$().ready(function() {
+		$("#keyword").autocomplete({
+			url: '/keyword/get_fg_keyword',
+			sortFunction: function(a, b, filter) {
+				var f = filter.toLowerCase();
+				var fl = f.length;
+				var a1 = a.value.toLowerCase().substring(0, fl) == f ? '0' : '1';
+				var a1 = a1 + String(a.data[0]).toLowerCase();
+				var b1 = b.value.toLowerCase().substring(0, fl) == f ? '0' : '1';
+				var b1 = b1 + String(b.data[0]).toLowerCase();
+				if (a1 > b1) {
+					return 1;
+				}
+				if (a1 < b1) {
+					return -1;
+				}
+				return 0;
+			},
+			showResult: function(value, data) {
+				return '<span style="color:blue">' + value + '</span>';
+			},
+			onItemSelect: function(item) {
+			    var text = 'You selected <b>' + item.value + '</b>';
+			    if (item.data.length) {
+			        text += ' <i>' + item.data.join(', ') + '</i>';
+			    }
+			    $("#last_selected").html(text);
+			},		
+			maxItemsToShow: 20
+		})
+		
+		
+	});
+	
+	
+	$(function(){
+			// Tabs
+			$('#tabs').tabs({ disabled: true });
+			
+	});
+	$(function(){
+			// Tabs
+			$('#ad_keyword').tabs();
+	});
+
+	function select_type(sel){
+		jQuery('#type').val(sel);
+		jQuery('#type_name').html(sel)
+	}
+	
+	
+	
+	
+	
+	
+	function getWindowOffset() {
+	    var offset = {
+	        x:0,
+	        y:0
+	    };
+	 
+	    if(typeof window.pageXOffset != 'undefined' || typeof window.pageYOffset != 'undefined') {
+	        offset.x = window.pageXOffset;
+	        offset.y = window.pageYOffset;
+	    } else if(typeof document.compatMode != 'undefined' && document.compatMode == 'CSS1Compat') {
+	        offset.x = document.documentElement.scrollLeft;
+	        offset.y = document.documentElement.scrollTop;
+	    } else if(typeof document.body != 'undefined' && (document.body.scrollLeft || document.body.scrollTop)) {
+	        offset.x = document.body.scrollLeft;
+	        offset.y = document.body.scrollTop;
+	    }
+	 
+	    return offset;
+	}	
+	function getWindowSize() {
+	    var client = {
+	        x:0,
+	        y:0
+	    };
+	 
+	    if(typeof document.compatMode != 'undefined' && document.compatMode == 'CSS1Compat') {
+	        client.x = document.documentElement.clientWidth;
+	        client.y = document.documentElement.clientHeight;
+	    } else if(typeof document.body != 'undefined' && (document.body.scrollLeft || document.body.scrollTop)) {
+	        client.x = document.body.clientWidth;
+	        client.y = document.body.clientHeight;
+	    }
+	 	
+	    return client;
+	}
+	function getObjOffset(element) {
+	    var objOffset = {
+	        x:0,
+	        y:0
+	    };
+	 
+	    if (arguments.length != 1 || element == null) {
+	        return null;
+	    }
+	    objOffset.x = element.offsetLeft;
+	    objOffset.y = element.offsetTop;
+	    while (element = element.offsetParent) {
+	        objOffset.x += element.offsetLeft;
+	        objOffset.y += element.offsetTop;
+	    }
+	 	
+	    return objOffset;
+	}
+	function getObjSize(element) {
+	    var objSize = {
+	        x:0,
+	        y:0
+	    };
+	 
+	    if (arguments.length != 1 || element == null) {
+	        return null;
+	    }
+	    objSize.x = element.offsetWidth;
+	    objSize.y = element.offsetHeight;
+		
+	    return objSize;
+	}
+	
+	
+	var WindowOffset = getWindowOffset();
+	var WindowSize = getWindowSize();
+	var buttonSet = 0;
+	
+	function show_result(){
+		buttonSet = (WindowOffset.y +WindowSize.y )
+		range = Math.abs(ObjSize.y-buttonSet)
+		if(range < 150 ){
+			jQuery('#next_beta').click();
+			jQuery('#next_beta').html('<img src="../../images/www/loading.gif">');
+		}
+		
+	}
+	
+	$(document).ready(function(){
+		jQuery(window).resize(function(){
+			WindowOffset = getWindowOffset();
+			WindowSize = getWindowSize();
+			ObjSize = getObjOffset(next);
+			show_result();
+			
+		});
+		jQuery(window).scroll(function(){
+			WindowOffset = getWindowOffset();	
+			ObjSize = getObjOffset(next);
+			show_result();
+			
+			jQuery('#next').click(function(){
+				$("#next").fadeIn().html("讀取中...");
+			});
+		
+		});
+		
+		
+
+	});
+
+</script>
+
+
+
+
+  
+</head>
+<body>
+	<div id="top" style=" margin: 0 auto;width: 1150px">
+		<%= @fg_top %>		
+	</div>
+	
+	<div id="Centered" style=" margin: 0 auto;width: 1150px;overflow: auto;">
+		<div id='left' style="width: 200px; float:left; background-color: #EAE6E3;">
+			<%= @fg_left %>
+		</div>	
+		<div id='cen' style="width: 750px; float:left; ">
+			<%= yield %>
+		</div>	
+		<div id='right' style="width: 200px; float:left; background-color: #EAE6E3;">
+			<%= @fg_right %>
+		</div>	
+	</div>
+	
+	<div id="button" style=" margin: 0 auto;width: 1150px">
+		<%= @fg_botton %>
+	</div>
+	
+	
+ <!-- REQUEST TIME -->
+</body>
+</html>
